@@ -2,6 +2,7 @@ Hello, This Customer CRUD Operation Project so you need to create database name 
 table structure is 
 CREATE TABLE `customers` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) NOT NULL DEFAULT (uuid()),
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `street` varchar(250) NOT NULL,
