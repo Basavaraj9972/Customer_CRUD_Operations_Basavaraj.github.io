@@ -34,8 +34,13 @@ public class SyncJSONCustomer extends HttpServlet {
 		List<Customer> allCustomer = customerDaoImpl.getAllCustomer();
 		if(customerList!=null && allCustomer!=null) {
 			for(int i =0;i<customerList.size();i++) {
+				boolean isMatch = false;
 				for( int j=0;j<allCustomer.size();j++) {
-					if(!(customerList.get(i).getUuid()).equals(allCustomer.get(j).getUuid())) {
+					if((customerList.get(i).getUuid()).equals(allCustomer.get(j).getUuid())) {
+						isMatch = true;
+						break;
+					}
+					if(!isMatch) {
 						boolean customerJSON2 = customerDaoImpl.addCustomerJSON(customerList.get(i));
 						System.out.println("customerJSON2 is added ? :"+customerJSON2);
 					}
