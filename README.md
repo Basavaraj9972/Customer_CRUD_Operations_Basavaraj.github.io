@@ -18,7 +18,7 @@ for database connectivity username is `root` and password is `root`
 excute the index file .
 This project will do the 
 Authenticate and Retrieve a Token:
-
+and pagination also done.
 The servlet makes a POST request to an authentication URL (AUTH_URL) with login credentials (LOGIN_ID and PASSWORD) in JSON format.
 It retrieves a JSON response containing an access_token.
 Use the Token to Fetch Customer Data:
