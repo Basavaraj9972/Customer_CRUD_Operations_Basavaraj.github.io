@@ -15,7 +15,7 @@ public interface CustomerDao {
 	public List<Customer> getCustomerByCity(String city);
 	public List<Customer> getCustomerByEmail(String email);
 	public List<Customer> getCustomerByPhone(String phone);
-	public List<Customer> getCustomers(int pageNumber, int pageSize);
-	public int getTotalRecords();
+//	public List<Customer> getCustomers(int pageNumber, int pageSize);
+//	public int getTotalRecords();
 //	 List<Customer> getAllCustomer(int page, int size, String sortField, String sortOrder, String searchQuery);
 }
