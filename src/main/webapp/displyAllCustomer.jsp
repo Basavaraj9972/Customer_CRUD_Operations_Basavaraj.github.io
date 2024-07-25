@@ -190,8 +190,8 @@ a {
     		}
 		});
 </script>
-		 <div id="pagination">
-        <%
+		<!--  <div id="pagination">
+        <
         int currentPage = (Integer) request.getAttribute("currentPage");
         int totalPages = (Integer) request.getAttribute("totalPages");
         
@@ -199,16 +199,17 @@ a {
             for (int i = 1; i <= totalPages; i++) {
                 if (i == currentPage) {
         %>
-        <span><%= i %></span>
-        <%
+        <span><= i %></span>
+        <
                 } else {
         %>
-        <a href="?pageNumber=<%= i %>"><%= i %></a>
-        <%
+        <a href="?pageNumber=<= i %>"><= i %></a>
+        <
                 }
             }
         }
         %>
+        --> 
     </div>
         
     </table>
