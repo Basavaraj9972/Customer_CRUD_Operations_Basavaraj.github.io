@@ -275,6 +275,58 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 
     
+	// Example: CustomerDAO.java
+
+	public List<Customer> getCustomers(int pageNumber, int pageSize) {
+	    List<Customer> customers = new ArrayList<>();
+	    int offset = (pageNumber - 1) * pageSize;
+	    
+	    String sql = "SELECT * FROM customers LIMIT ? OFFSET ?";
+	    
+	    try {
+	    	PreparedStatement stmt = con.prepareStatement(sql);
+	        stmt.setInt(1, pageSize);
+	        stmt.setInt(2, offset);
+	        ResultSet resultSet = stmt.executeQuery();
+	        	while (resultSet.next()) {
+					int id = resultSet.getInt("id");
+					String uuid = resultSet.getString("uuid");
+					String firstName = resultSet.getString("firstName");
+					String lastName = resultSet.getString("lastName");
+					String street = resultSet.getString("street");
+					String address = resultSet.getString("address");
+					String city = resultSet.getString("city");
+					String state = resultSet.getString("state");
+					String email = resultSet.getString("email");
+					String phone = resultSet.getString("phone");
+					Customer customer = new Customer(id,uuid,firstName, lastName, street, address, city, state, email, phone);
+					customers.add(customer);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return customers;
+	}
+
+	public int getTotalRecords() {
+	    int totalRecords = 0;
+	    String sql = "SELECT COUNT(*) FROM customers";
+	    
+	    try {
+	    	PreparedStatement stmt = con.prepareStatement(sql);
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            totalRecords = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return totalRecords;
+	}
+
+	
+	
 //    public List<Customer> getAllCustomer(int page, int size, String sortField, String sortOrder, String searchQuery) {
 //        List<Customer> customers = new ArrayList<>();
 //        String sql = "SELECT * FROM customers WHERE CONCAT(firstName, ' ', lastName) LIKE ? ORDER BY " 
