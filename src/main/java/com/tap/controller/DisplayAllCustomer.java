@@ -20,12 +20,28 @@ public class DisplayAllCustomer extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		CustomerDaoImpl customerDaoImpl = new CustomerDaoImpl();
-		List<Customer> allCustomer = customerDaoImpl.getAllCustomer();
-		System.out.println(allCustomer);
-		session.setAttribute("allCustomer", allCustomer);
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("displyAllCustomer.jsp");
-		requestDispatcher.forward(req, resp);
+		// Get pageNumber parameter, default to 1 if not provided
+		String pageNumberParam = req.getParameter("pageNumber");
+		int pageNumber = (pageNumberParam != null && !pageNumberParam.isEmpty()) ? Integer.parseInt(pageNumberParam): 1;
+
+		// Get pageSize parameter, default to 10 if not provided
+		String pageSizeParam = req.getParameter("pageSize");
+		int pageSize = (pageSizeParam != null && !pageSizeParam.isEmpty()) ? Integer.parseInt(pageSizeParam) : 10;
+
+		CustomerDaoImpl dao = new CustomerDaoImpl();
+		List<Customer> allCustomers = dao.getCustomers(pageNumber, pageSize);
+		System.out.println("All Customers " + allCustomers);
+		int totalRecords = dao.getTotalRecords();
+		int totalPages = (int) Math.ceil((double) totalRecords / pageSize);
+		System.out.println("totalPages " + totalPages);
+		System.out.println("pageNumber " + pageNumber);
+		session.setAttribute("allCustomer", allCustomers);
+		req.setAttribute("totalPages", totalPages);
+		req.setAttribute("currentPage", pageNumber);
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("displyAllCustomer.jsp");
+		dispatcher.forward(req, resp);
+
 	}
 
 }
