@@ -11,7 +11,8 @@ CREATE TABLE `customers` (
   `state` varchar(45) NOT NULL,
   `email` varchar(150) NOT NULL,
   `phone` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uuid_UNIQUE` (`uuid`)
 )
 for database connectivity username is `root` and password is `root` 
 excute the index file .
