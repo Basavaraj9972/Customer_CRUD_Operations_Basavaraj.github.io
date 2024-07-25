@@ -28,6 +28,22 @@ public class Customer {
 		this.uuid = uuid;
 	}
 
+	
+	public Customer(int id, String uuid, String firstName, String lastName, String street, String address, String city,
+			String state, String email, String phone) {
+		super();
+		this.id = id;
+		this.uuid = uuid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.street = street;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.email = email;
+		this.phone = phone;
+	}
+
 
 	public Customer(String uuid, String firstName, String lastName, String street, String address, String city,
 			String state, String email, String phone) {
@@ -160,15 +176,13 @@ public class Customer {
 		this.phone = phone;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street
-				+ ", address=" + address + ", city=" + city + ", state=" + state + ", email=" + email + ", phone="
-				+ phone + "]";
+		return "Customer [id=" + id + ", uuid=" + uuid + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", street=" + street + ", address=" + address + ", city=" + city + ", state=" + state + ", email="
+				+ email + ", phone=" + phone + "]";
 	}
-
-    
-    
 
 
 }

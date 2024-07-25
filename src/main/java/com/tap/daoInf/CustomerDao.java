@@ -6,6 +6,7 @@ import com.tap.model.Customer;
 
 public interface CustomerDao {
 	public boolean addCustomer(Customer customer);
+	public boolean addCustomerJSON(Customer customer);
 	public List<Customer> getAllCustomer();
 	public boolean deleteCustomer(int id);
 	public boolean updateCustomer(Customer customer);

@@ -49,6 +49,30 @@ public class CustomerDaoImpl implements CustomerDao{
 		}
         return rowInserted;
     }
+    
+    @Override
+    public boolean addCustomerJSON(Customer customer) {
+    	String sql = "INSERT INTO `customers` (`uuid`,`firstName`, `lastName`, `street`, `address`, `city`, `state`, `email`, `phone`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
+        boolean rowInserted = false;
+        try {
+        	PreparedStatement statement = con.prepareStatement(sql);
+        	statement.setString(1, customer.getUuid());
+        	statement.setString(2, customer.getFirstName());
+			statement.setString(3, customer.getLastName());
+			statement.setString(4, customer.getStreet());
+			statement.setString(5, customer.getAddress());
+			statement.setString(6, customer.getCity());
+			statement.setString(7, customer.getState());
+			statement.setString(8, customer.getEmail());
+			statement.setString(9, customer.getPhone());
+			rowInserted = statement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return rowInserted;
+    }
+
+    
 
     @Override
     public List<Customer> getAllCustomer(){
@@ -60,6 +84,7 @@ public class CustomerDaoImpl implements CustomerDao{
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
+				String uuid = resultSet.getString("uuid");
 				String firstName = resultSet.getString("firstName");
 				String lastName = resultSet.getString("lastName");
 				String street = resultSet.getString("street");
@@ -68,7 +93,7 @@ public class CustomerDaoImpl implements CustomerDao{
 				String state = resultSet.getString("state");
 				String email = resultSet.getString("email");
 				String phone = resultSet.getString("phone");
-				Customer customer = new Customer(id,firstName, lastName, street, address, city, state, email, phone);
+				Customer customer = new Customer(id,uuid,firstName, lastName, street, address, city, state, email, phone);
 				listCustomer.add(customer);
 			}
         } catch (SQLException e) {
@@ -124,6 +149,7 @@ public class CustomerDaoImpl implements CustomerDao{
 			statement.setInt(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
+				String uuid = resultSet.getString("uuid");
 				String firstName = resultSet.getString("firstName");
 				String lastName = resultSet.getString("lastName");
 				String street = resultSet.getString("street");
@@ -132,7 +158,7 @@ public class CustomerDaoImpl implements CustomerDao{
 				String state = resultSet.getString("state");
 				String email = resultSet.getString("email");
 				String phone = resultSet.getString("phone");
-				customer = new Customer(id,firstName, lastName, street, address, city, state, email, phone);
+				customer = new Customer(id,uuid,firstName, lastName, street, address, city, state, email, phone);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -247,6 +273,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		}
 		return listCustomer;
 	}
+
     
 //    public List<Customer> getAllCustomer(int page, int size, String sortField, String sortOrder, String searchQuery) {
 //        List<Customer> customers = new ArrayList<>();

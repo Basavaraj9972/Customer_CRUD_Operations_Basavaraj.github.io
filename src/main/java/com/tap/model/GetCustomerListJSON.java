@@ -40,7 +40,7 @@ public class GetCustomerListJSON {
         }
     }
 
-    private static String authenticateAndGetToken() throws Exception {
+    public static String authenticateAndGetToken() throws Exception {
         // Create the JSON body
         JSONObject body = new JSONObject();
         body.put("login_id", LOGIN_ID);
@@ -84,7 +84,7 @@ public class GetCustomerListJSON {
         }
     }
 
-    private static List<Customer> getCustomerList(String token) throws Exception {
+    public static List<Customer> getCustomerList(String token) throws Exception {
         // Make the GET request
         URL url = new URL(CUSTOMER_LIST_URL);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -113,7 +113,7 @@ public class GetCustomerListJSON {
         return list;
     }
 
-    private static List<Customer> printCustomerList(JSONArray customerList) {
+    public static List<Customer> printCustomerList(JSONArray customerList) {
     		list = new ArrayList<Customer>();
     	
         for (int i = 0; i < customerList.length(); i++) {

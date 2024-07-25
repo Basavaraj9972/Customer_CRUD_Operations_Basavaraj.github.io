@@ -127,6 +127,7 @@ a {
                 <input type="text" name="CustomerInformation" placeholder="Enter Customer details" required>
                 <i class="fas fa-search"></i>
                 <input type="submit" value="Search">
+                <a href="SyncJSONCustomer"><input id="sync" type="button" value="Sync"></a>
             </form>
         </div>
     </div>
