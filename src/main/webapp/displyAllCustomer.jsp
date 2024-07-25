@@ -108,6 +108,22 @@ a {
     left: 345px;
     color: #333;
 }
+
+#pagination {
+    margin: 20px 0;
+}
+
+#pagination a, #pagination span {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+#pagination span {
+    font-weight: bold;
+    color: #333;
+}
+
 </style>
 </head>
 <body>
@@ -174,6 +190,26 @@ a {
     		}
 		});
 </script>
+		 <div id="pagination">
+        <%
+        int currentPage = (Integer) request.getAttribute("currentPage");
+        int totalPages = (Integer) request.getAttribute("totalPages");
+        
+        if (totalPages > 1) {
+            for (int i = 1; i <= totalPages; i++) {
+                if (i == currentPage) {
+        %>
+        <span><%= i %></span>
+        <%
+                } else {
+        %>
+        <a href="?pageNumber=<%= i %>"><%= i %></a>
+        <%
+                }
+            }
+        }
+        %>
+    </div>
         
     </table>
 </body>
