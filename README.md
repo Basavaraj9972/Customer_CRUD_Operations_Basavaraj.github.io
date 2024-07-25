@@ -14,3 +14,16 @@ CREATE TABLE `customers` (
 )
 for database connectivity username is `root` and password is `root` 
 excute the index file .
+This project will do the 
+Authenticate and Retrieve a Token:
+
+The servlet makes a POST request to an authentication URL (AUTH_URL) with login credentials (LOGIN_ID and PASSWORD) in JSON format.
+It retrieves a JSON response containing an access_token.
+Use the Token to Fetch Customer Data:
+
+The servlet uses the retrieved access_token to make a GET request to a customer list URL (CUSTOMER_LIST_URL).
+The request is authenticated using the Bearer token in the Authorization header.
+Process and Display Customer Data:
+
+The servlet processes the JSON response containing a list of customers.
+It constructs an HTML response with customer details (such as UUID, name, address, email, and phone) and sends it back to the client.
