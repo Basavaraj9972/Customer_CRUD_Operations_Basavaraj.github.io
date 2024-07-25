@@ -39,11 +39,11 @@ public class SyncJSONCustomer extends HttpServlet {
 					if((customerList.get(i).getUuid()).equals(allCustomer.get(j).getUuid())) {
 						isMatch = true;
 						break;
-					}
-					if(!isMatch) {
-						boolean customerJSON2 = customerDaoImpl.addCustomerJSON(customerList.get(i));
-						System.out.println("customerJSON2 is added ? :"+customerJSON2);
-					}
+					}			
+				}
+				if(!isMatch) {
+					boolean customerJSON2 = customerDaoImpl.addCustomerJSON(customerList.get(i));
+					System.out.println("customerJSON2 is added ? :"+customerJSON2);
 				}
 			}	
 		}
